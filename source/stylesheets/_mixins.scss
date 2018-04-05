@@ -1,0 +1,208 @@
+// extends
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+@mixin breakpoint($point) {
+  @if $point == lg {
+    @media (min-width: $screen-lg) { @content ; }
+  }
+  @else if $point == md {
+   @media (min-width: $screen-md) { @content ; }
+  }
+  @else if $point == sm {
+   @media (min-width: $screen-sm)  { @content ; }
+  }
+  @else if $point == xs {
+   @media (max-width: $screen-xs)  { @content ; }
+  }
+  @else {
+   @media (min-width: $point)  { @content ; }
+  }
+}
+
+@mixin transition() {
+  -webkit-transition: all ease-in-out 0.15s;
+  transition: all ease-in-out 0.15s;
+  transition: all ease-in-out 0.15s;
+  transition: all ease-in-out 0.15s;
+}
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: '';
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if $i < $max {
+      $animations: #{$animations + ", "};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+@mixin arrow($direction, $color, $size, $position: false, $has_border: true, $size_border: 0, $color_innard: #fff) {
+  &:before {
+    @include _arrow($direction, $color, $size, $position);
+  }
+
+  @if $has_border == true {
+    $position: true;
+    &:after {
+      @include _arrow($direction, $color_innard, $size, $position);
+
+      @if $direction == 'top' {
+        top: -($size + $size_border);
+      }
+      @else if $direction == 'bottom' {
+        bottom: -($size - $size_border);
+      }
+      @else if $direction == 'left' {
+        left: -($size_border);
+      }
+      @else if $direction == 'right' {
+        right: -($size_border);
+      }
+    }
+  }
+}
+
+@mixin _arrow($direction, $color, $size, $position: false) {
+  display: block;
+  height: 0;
+  width: 0;
+
+  @if $position == true {
+    content: "";
+    position: absolute;
+
+    @if $direction == 'top' {
+      top: auto;
+      bottom: 100%;
+      left: 50%;
+      right: auto;
+      margin: 0 0 0 (-$size);
+    }
+    @else if $direction == 'bottom' {
+      top: auto;
+      bottom: (-$size);
+      left: 50%;
+      right: auto;
+      margin: 0 0 (-$size) (-$size/2);
+    }
+    @else if $direction == 'left' {
+      top: 50%;
+      bottom: auto;
+      left: auto;
+      right: 100%;
+      margin: (-$size) (-$size) 0 0;
+    }
+    @else if $direction == 'right' {
+      top: 50%;
+      bottom: auto;
+      left: 100%;
+      right: auto;
+      margin: (-$size) 0 0 0;
+    }
+  }
+
+  @if $direction == 'top' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  }
+  @else if $direction == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    border-right: $size solid transparent;
+  }
+  @else if $direction == 'bottom' {
+    border-top: $size solid $color;
+    border-bottom: $size solid transparent;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+  }
+  @else if $direction == 'left' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid transparent;
+    border-right: $size solid $color;
+  }
+  @else if $direction == 'top-left' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+  }
+  @else if $direction == 'top-right' {
+    border-top: $size solid $color;
+    border-left: $size solid transparent;
+  }
+  @else if $direction == 'bottom-left' {
+    border-bottom: $size solid $color;
+    border-right: $size solid transparent;
+  }
+  @else if $direction == 'bottom-right' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+}
+
+@function brightness($color) {
+  @if type-of($color) == color {
+    @return (red($color) * 0.299 + green($color) * 0.587 + blue($color) * 0.114) / 255 * 100%;
+  }
+  @else {
+    @return unquote("brightness(#{$color})");
+  }
+}
+
+@function contrast-color($color, $dark: $contrasted-dark-default, $light: $contrasted-light-default, $threshold: null) {
+  @if $threshold {
+    // Deprecated in Compass 0.13
+    @warn "The $threshold argment to contrast-color is no longer needed and will be removed in the next release.";
+  }
+  @if $color == null {
+    @return null;
+  }
+  @else {
+    $color-brightness: brightness($color);
+    $dark-text-brightness: brightness($dark);
+    $light-text-brightness: brightness($light);
+    @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
+  }
+}
+
+@mixin contrasted($background-color, $dark: $contrasted-dark-default, $light: $contrasted-light-default, $threshold: null) {
+  @if $threshold {
+    // Deprecated in Compass 0.13
+    @warn "The $threshold argment to contrasted is no longer needed and will be removed in the next release.";
+  }
+  background-color: $background-color;
+  color: contrast-color($background-color, $dark, $light);
+}

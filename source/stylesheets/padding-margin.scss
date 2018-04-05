@@ -1,0 +1,140 @@
+
+//=========================================
+/* Padding-Margin */
+//=========================================
+// padding and margin
+$space_sizes:
+  (xl, 5rem),    //large
+  (l, 2.5rem),    //large
+  (m, 2rem),  //medium
+  (d, 1.5rem),  //default
+  (s, 0.5rem),  //small
+  (xs, 0.25rem) //x-small
+;
+$orientation_list: (
+  v,
+  h
+);
+$direction_list: (
+  (t, top),
+  (r, right),
+  (b, bottom),
+  (l, left)
+);
+
+@each $space_sizes, $size in $space_sizes {
+  .pa#{$space_sizes} {
+    padding: 1rem;
+    @media (min-width: $bp-700) {
+      padding: $size;
+    }
+  }
+  .ma#{$space_sizes} {
+    margin: 1rem;
+    @media (min-width: $bp-700) {
+      margin: $size;
+    }
+  }
+}
+@each $direction_list, $direction in $direction_list {
+  @each $space_sizes, $size in $space_sizes {
+    .p#{$direction_list}#{$space_sizes} {
+      padding-#{$direction}: 1rem;
+      @media (min-width: $bp-700) {
+        padding-#{$direction}: $size;
+      }
+    }
+    .m#{$direction_list}#{$space_sizes} {
+      margin-#{$direction}: 1rem;
+      @media (min-width: $bp-700) {
+        margin-#{$direction}: $size;
+      }
+    }
+  }
+}
+@each $orientation_list, $orientation in $orientation_list {
+  @each $space_sizes, $size in $space_sizes {
+    @if $orientation_list == "v" {
+      .p#{$orientation_list}#{$space_sizes} {
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        @media (min-width: $bp-700) {
+          padding-bottom: $size;
+          padding-top: $size;
+        }
+      }
+      .m#{$orientation_list}#{$space_sizes} {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        @media (min-width: $bp-700) {
+          margin-bottom: $size;
+          margin-top: $size;
+        }
+      }
+    }
+    @else if $orientation_list == "h" {
+      .p#{$orientation_list}#{$space_sizes} {
+      padding-left: 1rem;
+      padding-right: 1rem;
+        @media (min-width: $bp-700) {
+          padding-left: $size;
+          padding-right: $size;
+        }
+      }
+      .m#{$orientation_list}#{$space_sizes} {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        @media (min-width: $bp-700) {
+          margin-left: $size;
+          margin-right: $size;
+        }
+      }
+    }
+  }
+}
+// border
+$border_sizes:
+  (l, 5px), //large
+  (m, 2px), //medium
+  (d, 1px)  //normal
+;
+
+@each $border_sizes, $size in $border_sizes {
+  .ba#{$border_sizes} {
+    border: $size solid $color-border-soft;
+  }
+}
+@each $direction_list, $direction in $direction_list {
+  @each $border_sizes, $width in $border_sizes {
+    @if $border_sizes != "" {
+      .b#{$direction_list}#{$border_sizes} {
+        border-#{$direction}: $width solid $color-border-soft;
+      }
+    }
+    @else  {
+      .b#{$direction_list} {
+        border-#{$direction}: $width solid $color-border-soft;
+      }
+    }
+  }
+}
+@each $orientation_list, $orientation in $orientation_list {
+  @each $border_sizes, $size in $border_sizes {
+    $hyphen: '';
+    @if $space_sizes != ''{
+      $hyphen: '-';
+    }
+    @if $orientation_list == "v" {
+      .b#{$orientation_list}#{$border_sizes} {
+        border-bottom: $size solid $color-border-soft;
+        border-top: $size solid $color-border-soft;
+      }
+    }
+    @else if $orientation_list == "h" {
+      .b#{$orientation_list}#{$border_sizes} {
+        border-left: $size solid $color-border-soft;
+        border-right: $size solid $color-border-soft;
+      }
+    }
+  }
+}

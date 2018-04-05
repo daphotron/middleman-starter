@@ -1,0 +1,64 @@
+// Defaults
+// =========================================
+* {
+  box-sizing: border-box;
+  outline: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html {
+  font-size: 100%;
+}
+body {
+  background-color: $color-bg-body;
+  color: $color-text;
+  font-family: $font-primary;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+h1, h2 {
+  line-height: 1.1;
+}
+a {
+  color: $color-link;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.1s;
+  &:focus,
+  &:hover {
+    color: darken($color-link, 0.6);
+  }
+}
+p {
+  margin: 0;
+}
+
+// LISTS
+// =========================================
+ol,
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+caption,
+th {
+  text-align: left;
+}

@@ -1,0 +1,46 @@
+//=========================================
+/* Typography */
+//=========================================
+.hxxxl {
+  font-size: $bp-hxxxl;
+  line-height: 1.2;
+  @media (min-width: $bp-700) {
+    font-size: $hxxxl;
+  }
+}
+.hxxl {
+  font-size: $bp-hxxl;
+  @media (min-width: $bp-700) {
+    font-size: $hxxl;
+  }
+}
+.hxl {
+  font-size: $bp-hxl;
+  @media (min-width: $bp-700) {
+    font-size: $hxl;
+  }
+}
+.hl {
+  font-size: $bp-hl;
+  @media (min-width: $bp-700) {
+    font-size: $hl;
+  }
+}
+.hm {
+  font-size: $bp-hm;
+  @media (min-width: $bp-700) {
+    font-size: $hm;
+  }
+}
+.hd {
+  font-size: $bp-hd;
+  @media (min-width: $bp-700) {
+    font-size: $hd;
+  }
+}
+.hs {
+  font-size: $bp-hs;
+  @media (min-width: $bp-700) {
+    font-size: $hs;
+  }
+}

@@ -1,0 +1,89 @@
+
+//=========================================
+// ~Colors
+//=========================================
+// Blues from Darker to Lighter
+$midnight-blue: #003657;
+$more-blue: #00578e;
+$dark-cyan: #007bb6;
+$cyan: #00a3d6;
+$cyan-light: #51c1e4;
+
+// Greys
+$black: #111;
+$text-dark: #3c3c3c;
+$text-regular: #6d6d6d;
+$gray-dark: #999;
+$gray-medium: #ccc;
+$gray-light: #dddddd;
+$gray-extra-light: #f9f9f9;
+
+// Various Colors
+$green-overlap: #4f8636;
+$text-green: #96a100;
+$green: #a8b400;
+$purple: #5255a5;
+$orange: #ee7624;
+
+//=========================================
+// ~Color Abstractions
+//=========================================
+$color-primary: $dark-cyan;
+
+// TEXT
+$color-link: $dark-cyan;
+$color-text: $text-dark;
+$color-text-light: $text-regular;
+
+// BACKGROUNDS
+$color-bg-body: #f6f6f6;
+
+// BORDERS
+$color-border-soft: $gray-light;
+$color-border-input: $gray-light;
+
+
+// BUTTONS
+$color-btn-primary: $dark-cyan;
+
+//=========================================
+// ~Fonts
+//=========================================
+$helvetica: 'Helvetica Neue', 'Helvetica, sans-serif';
+
+$font-primary: $helvetica; // body
+$font-secondary: $helvetica; // headlines
+$font-tertiary: $helvetica; // labels
+
+//=========================================
+// ~Typography
+//=========================================
+$base-font-size: 12;
+$bp-700: 700/$base-font-size + 0rem;
+
+$hxxxl: 32/$base-font-size + 0rem;
+$hxxl: 24/$base-font-size + 0rem;
+$hxl: 18/$base-font-size + 0rem;
+$hl: 16/$base-font-size + 0rem;
+$hm: 14/$base-font-size + 0rem;
+$hd: 12/$base-font-size + 0rem;
+$hs: 10/$base-font-size + 0rem;
+
+// Breakpoints
+$screen-xs:                  480/$base-font-size + 0rem !default;
+$screen-phone:               $screen-xs !default;
+$screen-sm:                  768/$base-font-size + 0rem !default;
+$screen-tablet:              $screen-sm !default;
+$screen-md:                  992/$base-font-size + 0rem !default;
+$screen-desktop:             $screen-md !default;
+$screen-lg:                  1200/$base-font-size + 0rem !default;
+$screen-lg-desktop:          $screen-lg !default;
+
+// Font sizes on a smaller screen
+$bp-hxxxl: 24/$base-font-size + 0rem;
+$bp-hxxl: 16/$base-font-size + 0rem;
+$bp-hxl: 16/$base-font-size + 0rem;
+$bp-hl: 16/$base-font-size + 0rem;
+$bp-hm: 14/$base-font-size + 0rem;
+$bp-hd: 12/$base-font-size + 0rem;
+$bp-hs: 10/$base-font-size + 0rem;

@@ -1,0 +1,298 @@
+//=========================================
+/* Toolbox */
+//=========================================
+
+// Clearfix
+//=========================================
+.hidden {
+  display: none;
+}
+// ~clearfix
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.clear {
+  clear: both;
+}
+
+// Positioning
+//=========================================
+.center {
+  margin: 0 auto;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+
+// Helpers
+//=========================================
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.align-middle {
+  vertical-align: middle;
+}
+.visible-lg {
+  display: none;
+  @include breakpoint(lg) {
+    display: inherit;
+  }
+}
+.visible-md {
+  display: none;
+  @include breakpoint(md) {
+    display: inherit;
+  }
+}
+.visible-sm {
+  display: none;
+  @include breakpoint(sm) {
+    display: inherit;
+  }
+}
+.visible-xs {
+  display: none;
+  @include breakpoint(xs) {
+    display: inherit;
+  }
+}
+// Text
+//=========================================
+.text-light {
+  color: #fefefe;
+}
+.text-grey {
+  color: #ccc;
+}
+.text-bold {
+  font-weight: 600;
+}
+.text-italic {
+  font-style: italic;
+}
+// Backgrounds
+//=========================================
+.bg-accent {
+  background-color: $dark-cyan;
+}
+.bg-light {
+  background-color: #fff;
+}
+.bg-translucent {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.rad {
+  border-radius: 3px;
+}
+.bg-shadow {
+  -webkit-box-shadow: 0 2px 16px 1px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 2px 16px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 16px 1px rgba(0,0,0,0.1);
+}
+
+//=========================================
+// ~FLEX LAYOUT
+//=========================================
+.trow {
+  display: table;
+  width: 100%;
+}
+.tcell {
+  display: inline;
+
+  @media (min-width: 1024px) {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+//=========================================
+// ~FLEX LAYOUT
+//=========================================
+
+.flex-layout-horizontal,
+.flex-layout-horizontal-reverse,
+.flex-layout-vertical,
+.flex-layout-vertical-reverse {
+  display: flex;
+}
+
+.flex-layout-inline {
+  display: inline-flex;
+}
+
+.flex-layout-horizontal {
+  flex-direction: row;
+}
+
+.flex-layout-horizontal-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-layout-vertical {
+  flex-direction: column;
+}
+
+.flex-layout-vertical-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-layout-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-layout-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+// generate grid columns
+@for $i from 1 through 12 {
+  .flex-#{$i} {
+    flex: #{$i};
+  }
+}
+
+// alignment in cross axis
+.flex-start {
+  align-items: flex-start;
+}
+.flex-center-center {
+  align-items: center;
+}
+.flex-end {
+  align-items: flex-end;
+}
+
+// alignment in main axis
+.flex-start-justified {
+  justify-content: flex-start;
+}
+.flex-center-justified,.flex-center-center {
+  justify-content: center;
+}
+.flex-end-justified {
+  justify-content: flex-end;
+}
+.flex-around-justified {
+  justify-content: space-around;
+}
+.flex-justified {
+  justify-content: space-between;
+}
+
+// self alignment
+.flex-self-start {
+  align-self: flex-start;
+}
+.flex-self-center {
+  align-self: center;
+}
+.flex-self-end {
+  align-self: flex-end;
+}
+.flex-self-stretch {
+  align-self: stretch;
+}
+
+
+//=========================================
+// FLEXIBLE 3 COL
+//=========================================
+$em-base: 12px;
+$bp-widest: 900px/$em-base + 0rem;
+$bp-wide: 700px/$em-base + 0rem;
+
+.span3 {
+  display: block;
+  @media (min-width: $bp-wide) {
+    // 2 col
+    float: left;
+    margin-right: 2%;
+    width: 48%;
+  }
+  @media (min-width: $bp-widest) {
+    // 3 col
+    width: 32%;
+  }
+}
+// first of 2
+.span3:nth-child(2n+1) {
+  @media (min-width: $bp-wide) and (max-width: $bp-widest) {
+    clear: left;
+  }
+}
+// last of 2
+.span3:nth-child(2n) {
+  @media (min-width: $bp-wide) and (max-width: $bp-widest) {
+    margin-right: 0;
+  }
+}
+
+// first of 3
+.span3:nth-child(3n+1) {
+  @media (min-width: $bp-widest) {
+    clear: left;
+  }
+}
+// last of 3
+.span3:nth-child(3n) {
+  @media (min-width: $bp-widest) {
+    margin-right: 0;
+  }
+}
+
+//=========================================
+// FLEXIBLE 2 COL
+//=========================================
+.span2 {
+  display: block;
+  @media (min-width: $bp-wide) {
+    // 2 col
+    float: left;
+    margin-right: 2%;
+    width: 48%;
+  }
+}
+// first of 2
+.span2:nth-child(2n+1) {
+  @media (min-width: $bp-wide) {
+    clear: left;
+  }
+}
+// last of 2
+.span2:nth-child(2n) {
+  @media (min-width: $bp-wide) {
+    margin-right: 0;
+  }
+}

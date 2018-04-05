@@ -1,0 +1,26 @@
+@import '_vars';
+@import '_mixins';
+@import 'defaults';
+@import 'toolbox';
+@import 'typography';
+@import 'normalize';
+@import 'bootstrap-grid';
+@import 'padding-margin';
+
+body {
+  background-color: $color-bg-body;
+  color: $color-text;
+  font-family: $font-primary;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: $color-link;
+  transition: all 0.1s;
+
+  &:focus,
+  &:hover {
+    color: darken($color-link, 0.6);
+  }
+}
